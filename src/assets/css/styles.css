@@ -1,0 +1,195 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+:root {
+    --yellow: #EFC81A;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 575px) {
+    .second-navigation h1 {
+        text-align: center;
+    }
+    
+    .second-navigation div {
+        margin-left: 12vh;
+    }
+    
+    .ingredient-popular-recipe h1, .ingredient-popular-recipe .ingredient, .ingredient-popular-recipe a {
+        margin-left: 10vh;
+        margin-top: 2vh;
+    }
+    
+    .info-box {
+        margin-top: 6vh !important;
+    }
+    
+    .recipe-popular-group .recipe-popular-section .recipe-popular-text .recipe-text {
+        font-size: auto;
+        margin-top: 2vh;
+        text-indent: 1px;
+        background-color: none;
+    }
+    
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+    
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+    
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 3vh;
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 576px) {
+    .second-navigation h1 {
+        text-align: center;
+    }
+    
+    .second-navigation div {
+        margin-left: 15vh;
+    }
+    
+    .ingredient-popular-recipe h1, .ingredient-popular-recipe .ingredient, .ingredient-popular-recipe a {
+        margin-left: 22vh;
+        margin-top: 2vh;
+    }
+    
+    .info-box {
+        margin-top: 6vh !important;
+    }
+    
+    .recipe-popular-group .recipe-popular-section .recipe-popular-text .recipe-text {
+        font-size: auto;
+        margin-top: 2vh;
+        text-indent: 1px;
+        background-color: none;
+    }
+    
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+    
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+    
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 3vh;
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .second-navigation h1 {
+        text-align: left;
+        margin-top: 30vh;
+    }
+
+    .second-navigation div {
+        width: 50%;
+        /* margin-top: 10vh; */
+        margin-left: 1vh;
+    }
+    
+    .first-image {
+        margin-top: -50vh;
+        margin-right: 10vh;
+    }
+
+    .single-popular-recipe a img {
+        margin-top: -2vh;
+        margin-left: 15vh;
+    }
+
+    .ingredient-popular-recipe {
+        margin-top: -60vh;
+        margin-bottom: 40vh;
+        margin-left: 10vh;
+    }
+
+    .single-new-recipe a img {
+        margin-left: 15vh;
+        margin-top: 10vh;
+    }
+
+    .ingredient-new-recipe {
+        margin-top: -50vh;
+        margin-bottom: 40vh;
+    }
+
+    .recipe-popular-group .recipe-popular-section .recipe-popular-text .recipe-text {
+        font-size: 6vh;
+        margin-top: 17vh;
+        margin-left: 5vh;
+    }
+
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 150vh;
+        margin-top: -5vh;
+    }
+}
+
+@media (min-width: 768px) { 
+    .single-popular-recipe a img {
+        margin-left: 25vh;
+        margin-top: 1vh;
+    }
+
+    .single-new-recipe a img {
+        margin-left: 25vh;
+        margin-top: 6vh;
+    }
+
+    .second-navigation h1 {
+        text-align: left;
+        margin-top: -7vh;
+    }
+
+    .ingredient-popular-recipe h1, .ingredient-popular-recipe .ingredient, .ingredient-popular-recipe a {
+        margin-left: -12vh;
+    }
+
+    .profile-wrapper {
+        margin-top: 6vh;
+    }
+}

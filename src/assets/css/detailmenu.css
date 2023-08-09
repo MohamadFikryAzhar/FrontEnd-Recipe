@@ -1,0 +1,323 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+:root {
+    --yellow: #EFC81A;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 575px) {
+    .profile-wrapper a img {
+        margin-left: 17vh;
+        margin-right: 1vh;
+    }
+    
+    .second-nav div form .reaction-count {
+        display: none;  
+    }
+    
+    .ingredient {
+        font-size: 3vh;
+        margin-left: 4vh;
+        margin-top: 2vh;
+    }
+    
+    .reaction {
+        margin-left: 50vh;
+    }
+    
+    .reaction .bookmarkBtn {
+        border: 1px solid var(--yellow);
+    }
+    
+    .reaction .likeBtn {
+        border: 1px solid var(--yellow);
+    }
+    
+    .reaction .bookmarkBtn:focus {
+        background-color: var(--yellow);
+    }
+    
+    .reaction .likeBtn:focus {
+        background-color: var(--yellow);
+    }
+    
+    .profile-comment {
+        margin-left: 5vh;
+    }
+    
+    .comment-info {
+        margin-left: 5vh;
+    }
+    
+    .comment-info p:nth-child(2) {
+        display: none;
+    }
+    
+    .comment {
+        margin-left: 25vh;
+        margin-top: -10vh;
+        margin-bottom: 10vh;
+        font-size: 18px;
+    }
+    
+    .comment-form {
+        margin-left: 1vh;
+    }
+    
+    .comment-form textarea {
+        border: 1px solid #898989;
+        border-radius: 6px;
+        width: 63vh;
+    }
+    
+    .comment-form button {
+        border: 0px solid #FFB167;
+        border-radius: 6px;
+        margin-top: 1vh;
+        background-color: #FFB167;
+        width: 30vh;
+        height: 8vh;
+        color: #000000;
+    }
+    
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+    
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+    
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 1vh;
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 576px) {
+    .profile-wrapper a img {
+        margin-left: 17vh;
+        margin-right: 1vh;
+    }
+    
+    .second-nav div form .reaction-count {
+        display: none;  
+    }
+    
+    .ingredient {
+        font-size: 3vh;
+        margin-left: 4vh;
+        margin-top: 2vh;
+    }
+    
+    .reaction {
+        margin-left: 50vh;
+    }
+    
+    .reaction .bookmarkBtn {
+        border: 1px solid var(--yellow);
+    }
+    
+    .reaction .likeBtn {
+        border: 1px solid var(--yellow);
+    }
+    
+    .reaction .bookmarkBtn:focus {
+        background-color: var(--yellow);
+    }
+    
+    .reaction .likeBtn:focus {
+        background-color: var(--yellow);
+    }
+    
+    .profile-comment {
+        margin-left: 5vh;
+    }
+    
+    .comment-info {
+        margin-left: 5vh;
+    }
+    
+    .comment-info p:nth-child(2) {
+        display: none;
+    }
+    
+    .comment {
+        margin-left: 25vh;
+        margin-top: -10vh;
+        margin-bottom: 10vh;
+        font-size: 18px;
+    }
+    
+    .comment-form {
+        margin-left: 1vh;
+    }
+    
+    .comment-form textarea {
+        border: 1px solid #898989;
+        border-radius: 6px;
+        width: 63vh;
+    }
+    
+    .comment-form button {
+        border: 0px solid #FFB167;
+        border-radius: 6px;
+        margin-top: 1vh;
+        background-color: #FFB167;
+        width: 30vh;
+        height: 8vh;
+        color: #000000;
+    }
+    
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+    
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+    
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 1vh;
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .second-nav {
+        margin-top: 6vh;
+    }
+
+    .second-nav div form .reaction-count {
+        display: flex; 
+    }
+
+    .profile-wrapper {
+        margin-left: -14vh;
+    }
+
+    .profile-wrapper a img {
+        margin-left: 7vh;
+    }
+
+    .vr {
+        margin-left: 40vh;
+    }
+
+    .profile-details {
+        margin-left: 2vh;
+    }
+
+    .image-detail-link {
+        display: flex;
+        justify-content: center;
+        margin-top: 5vh;
+    }
+
+    .ingredient {
+        font-size: 4vh;
+        margin-left: 40vh;
+        margin-top: 10vh;
+    }
+
+    .reaction {
+        margin-left: 50vh;
+    }
+
+    .reaction .bookmarkBtn {
+        border: 1px solid var(--yellow);
+    }
+    
+    .reaction .likeBtn {
+        border: 1px solid var(--yellow);
+    }
+
+    .reaction .bookmarkBtn:focus {
+        background-color: var(--yellow);
+    }
+
+    .reaction .likeBtn:focus {
+        background-color: var(--yellow);
+    }
+
+    .vertical-line {
+        background-color: var(--yellow);
+        width: 10%;
+        height: 5%;
+        margin-right: 100vh;
+        transform: translate(90.2);
+    }
+
+    .profile-comment img {
+        margin-top: 3vh;
+        margin-left: 5vh;
+    }
+
+    .comment {
+        margin-left: 85vh;
+        margin-top: -10vh;
+        margin-bottom: 10vh;
+        font-size: 18px;
+    }
+
+    .comment-form {
+        margin-left: 42vh;
+    }
+    
+    .comment-form textarea {
+        border: 1px solid #898989;
+        border-radius: 6px;
+        width: 83vh;
+    }
+
+    .comment-form button {
+        border: 0px solid #FFB167;
+        border-radius: 6px;
+        margin-top: 1vh;
+        background-color: #FFB167;
+        width: 50vh;
+        height: 8vh;
+        color: #000000;
+    }
+
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 150vh;
+        margin-top: -5vh;
+    }
+}

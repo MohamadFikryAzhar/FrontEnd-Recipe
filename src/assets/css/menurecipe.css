@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+:root {
+    --yellow: goldenrod;
+}
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif !important;
+}
+
+@media (max-width: 575px) {
+    .title-top {
+        text-align: center;
+    }
+    
+    .search-bar {
+        border-radius: 8px;
+        height: 10px;
+        width: 20px;
+        margin-left: 19vh;
+    }
+    
+    .category {
+        margin-bottom: 8vh;
+    }
+    
+    .ingredient-popular-recipe {
+        text-align: center;
+    }
+    
+    .ingredient-popular-recipe .account {
+        background-color: transparent;
+    }
+    
+    .ingredient-popular-recipe .reaction-row {
+        width: 65%;
+        margin: auto;
+    }
+    
+    .pagination, .button-next {
+        display: flex;
+        justify-content: center;
+        margin-top: 10vh;
+        margin-bottom: -10vh;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+    
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+    
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 1vh;
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 576px) {
+    .title-top {
+        text-align: center;
+    }
+    
+    .search-bar {
+        margin-left: 19vh;
+    }
+    
+    .category {
+        margin-bottom: 8vh;
+    }
+    
+    .ingredient-popular-recipe {
+        text-align: center;
+    }
+    
+    .ingredient-popular-recipe .account {
+        background-color: transparent;
+    }
+    
+    .ingredient-popular-recipe .reaction-row {
+        width: 65%;
+        margin: auto;
+    }
+    
+    .pagination, .button-next {
+        display: flex;
+        justify-content: center;
+        margin-top: 10vh;
+        margin-bottom: -10vh;
+        align-items: center;
+        gap: 12px;
+    }
+    
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+    
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+    
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 1vh;
+        margin-top: 5vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .second-navigation h1 {
+        text-align: left;
+        margin-top: 30vh;
+    }
+
+    .second-navigation div {
+        width: 50%;
+        margin-top: -10vh;
+        margin-left: -1vh;
+    }
+
+    #photo-profile {
+        margin-top: 3vh;
+        margin-left: 3vh;
+        height: 50px;
+        width: 50px;
+        border-radius: 25px;
+        background-color: transparent;
+    }
+
+    .title-top {
+        margin-top: 10vh;
+        text-align: left;
+    }
+
+    .single-popular-recipe a img {
+        margin-top: -10vh;
+        margin-left: 16vh;
+    }
+
+    .ingredient-popular-recipe {
+        text-align: start;
+        margin-top: -45vh;
+        margin-bottom: 30vh;
+        gap: 2vh;
+    }
+    
+    .ingredient-popular-recipe .account {
+        background-color: transparent;
+    }
+    
+    .ingredient-popular-recipe .reaction-row {
+        width: 65%;
+        margin: auto;
+        margin-left: -0.2vh;
+    }
+
+    .category {
+        margin-top: 7vh;
+        margin-bottom: 25vh;
+        margin-left: 15vh;
+    }
+
+    .search-bar, input[name="menu"] {
+        padding-right: auto;
+    }
+
+    .search-bar input[name="menu"] {
+        margin-left: -7vh;
+    }
+
+    .pagination, .button-next {
+        margin-top: -10vh;
+    }
+
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+
+    footer .footer-company {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) {
+    .profile-wrapper #photo-profile {
+        margin-top: 3vh;
+        margin-left: 3vh;
+    }
+
+    .category {
+        margin-top: 3vh;
+        margin-bottom: 15vh;
+        padding-left: 10vh;
+    }
+
+    .search-bar, input[name="menu"] {
+        padding-left: 7vh;
+    }
+    
+    .search-bar input[name="menu"] {
+        border: 1px solid #898989;
+        width: 62vh;
+        height: 6vh;
+        border-radius: 6px;
+        color: #898989;
+    }
+
+    .pagination, .button-next {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 12px;
+    }
+
+    footer, .footer-motto, .footer-sub-motto {
+        text-align: center;
+        margin-top: 2vh;
+        padding: 20px;
+        background-color: var(--yellow);
+        color: black;
+    }
+
+    footer, .footer-nav {
+        background-color: var(--yellow);
+        color: black;
+        margin-top: 20vh;
+    }
+
+    footer .footer-company {
+        background-color: var(--yellow);
+        color: black;
+        margin-left: 150vh;
+        margin-top: -5vh;
+    }
+}
