@@ -1,16 +1,18 @@
-import Navbar from '../../component/Navbar';
-import Footer from '../../component/Footer';
-import './../../assets/css/addmenu.css'
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
+import './../assets/css/addmenu.css'
 import { useState } from 'react';
-import axios from 'axios';
-import { URL } from '../../config/URL';
+import { URL } from './../config/URL';
 import { useNavigate } from 'react-router';
-
-sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY2NjA4NjAxLTYwNDUtNGQ4ZC1hNmMyLTU3NDg4ZmQ0YjMzZiIsIm5hbWUiOiJBZHphbmEgU2hhbGloYSIsImVtYWlsIjoiZ2hhbmlnaGFuaUBnbWFpbC5jb20iLCJyb2xlX25hbWUiOiJ1c2VyIiwicGhvdG8iOm51bGwsInBob3RvX2lkIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wOC0wOFQyMzozMToxMy4zNjVaIiwidXBkYXRlZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwiaWF0IjoxNjkxNTQ2NjkyLCJleHAiOjE3MjMwODI2OTJ9.zdKox40i-b9CVdVYdKAwxhwt22UUtHB1oaQuZX4k7OQ")
-let token = sessionStorage.getItem("token");
+import { useDispatch, useSelector } from 'react-redux';
+import { postRecipeAction } from '../../redux/actions/RecipeAction.js';
+import { PacmanLoader } from 'react-spinners';
 
 export default function AddRecipe() {
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const {post_recipe} = useSelector(state => state);
+    const {isLoading} = post_recipe;
     const [image_path, setImage] = useState(null);
     const [recipe, setRecipe] = useState({
         title: '',
@@ -21,23 +23,14 @@ export default function AddRecipe() {
 
     const postRecipe = e => {
         e.preventDefault();
-        let bodyForm = new FormData();
+        let bodyRecipe = new FormData();
 
-        bodyForm.append("title", recipe.title);
-        bodyForm.append("ingredients", recipe.ingredients);
-        bodyForm.append("image_path", image_path);
-        bodyForm.append("category", recipe.category);
+        bodyRecipe.append("title", recipe.title);
+        bodyRecipe.append("ingredients", recipe.ingredients);
+        bodyRecipe.append("image_path", image_path);
+        bodyRecipe.append("category", recipe.category);
 
-        axios.post(`${URL}/recipe`, bodyForm, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data"
-            }
-        }).then(() => {
-            navigate('/recipe')
-        }).catch(e => {
-            console.error(e.message);
-        })
+        dispatch(postRecipeAction(bodyRecipe, navigate));
     }
 
     const onRecipe = e => {
@@ -51,7 +44,9 @@ export default function AddRecipe() {
 
     return (
         <>
-            <Navbar firstlink="Home" firstlinkto="/" secondlink="Search menu" secondlinkto="/recipe" thirdlink="Profile" thirdlinkto="/account" props='account' />
+            <Navbar/>
+
+            {isLoading && <PacmanLoader color="#36d7b7" />}
 
             <form onSubmit={postRecipe}>
                 <div className="photo-file" style={{

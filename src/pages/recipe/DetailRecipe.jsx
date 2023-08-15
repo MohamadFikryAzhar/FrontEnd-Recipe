@@ -1,32 +1,24 @@
-import Navbar from './../../component/Navbar';
-import Footer from './../../component/Footer';
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
 import { Link, useParams } from 'react-router-dom';
-import Elephant from '/images/Ellipse 127.png';
-import './../../assets/css/detailmenu.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
-import { URL } from '../../config/URL';
-
-sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY2NjA4NjAxLTYwNDUtNGQ4ZC1hNmMyLTU3NDg4ZmQ0YjMzZiIsIm5hbWUiOiJBZHphbmEgU2hhbGloYSIsImVtYWlsIjoiZ2hhbmlnaGFuaUBnbWFpbC5jb20iLCJyb2xlX25hbWUiOiJ1c2VyIiwicGhvdG8iOm51bGwsInBob3RvX2lkIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wOC0wOFQyMzozMToxMy4zNjVaIiwidXBkYXRlZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwiaWF0IjoxNjkxNTQ2NjkyLCJleHAiOjE3MjMwODI2OTJ9.zdKox40i-b9CVdVYdKAwxhwt22UUtHB1oaQuZX4k7OQ")
-let token = sessionStorage.getItem("token");
+import Elephant from '/images/image-3.webp';
+import './../assets/css/detailmenu.css';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {getRecipeAction} from './../../redux/actions/RecipeAction.js';
 
 export default function DetailRecipe() {
     const {id} = useParams();
-    const [recipeData, setRecipeData] = useState([]);
-    
+    const dispatch = useDispatch();
+    const recipe = useSelector(state => state.recipe);
+     
     useEffect(() => {
-        axios.get(`${URL}/recipe/${id}/detail`,{headers :{
-            Authorization : `Bearer ${token}`
-        }})
-        .then(res => setRecipeData(res.data.data))
-        .catch(err => {
-            console.error(err.message)
-        })
-    })
+        dispatch(getRecipeAction(id))
+    }, [])
 
     return (
         <>
-            <Navbar firstlink='Home' firstlinkto='/' secondlink='Search menu' secondlinkto='/recipe' thirdlink='Profile' thirdlinkto='/account' props='account' />
+            <Navbar/>
 
             <section className="navbar second-nav">
             <div className="container-fluid">
@@ -37,7 +29,7 @@ export default function DetailRecipe() {
                     </Link>
                 </mark>
                 <mark className="col bg-transparent profile-details">
-                    <p className="col">Karen</p>
+                    <p className="col">Mr. Elephant</p>
                     <p className="fw-bold">10 recipes</p>
                 </mark>
                 <form className="d-flex" role="search">
@@ -50,17 +42,18 @@ export default function DetailRecipe() {
             </section>
 
             <section className="container">
-                <h1 className="text-center">{recipeData.title}</h1>
+                <h1 className="text-center">{recipe.title}</h1>
                 <Link to="#" className="image-detail-link">
-                    <img src={recipeData.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipeData.title}/>
+                    <img src={recipe.image_path} className="img-fluid img-thumbnail" loading="eager" decoding="async" width="500" height="350" id="recipe-img" alt={recipe.title}/>
                 </Link>
-                <p className="ingredient me-5">
-                {recipeData.ingredients}
+                <p className="ingredient me-5 fs-4">
+                ingredient: <br/>
+                {recipe.ingredients}
                 </p>
-                <blockquote className="text-center">{recipeData.category}</blockquote>
+                <blockquote className="fs-4 ms-5">{recipe.category}</blockquote>
             </section>
         
-            <section className="reaction">
+            <section className="reaction me-5">
                 <button className="btn bookmarkBtn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-bookmark" viewBox="0 0 16 16">
                         <path d="M2 2a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v13.5a.5.5 0 0 1-.777.416L8 13.101l-5.223 2.815A.5.5 0 0 1 2 15.5V2zm2-1a1 1 0 0 0-1 1v12.566l4.723-2.482a.5.5 0 0 1 .554 0L13 14.566V2a1 1 0 0 0-1-1H4z"/>
@@ -80,7 +73,7 @@ export default function DetailRecipe() {
                     <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={Elephant} alt="Elephant profile"/>
                 </mark>
                 <mark className="col bg-transparent comment-info">
-                    <p className="col">Karen</p>
+                    <p className="col">Mr. Elephant</p>
                     <p className="fw-bold">10 recipes</p>
                 </mark>
                 <div className="vr bg-warning" style={{padding: '4px', height: '100px', marginTop: '-17vh'}}></div>
@@ -92,24 +85,24 @@ export default function DetailRecipe() {
                     <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={Elephant} alt="Elephant profile"/>
                 </mark>
                 <mark className="col bg-transparent comment-info">
-                    <p className="col">Karen</p>
+                    <p className="col">Mr. Elephant</p>
                     <p className="fw-bold">10 recipes</p>
                 </mark>
                 <div className="vr bg-warning" style={{padding: '4px', height: '100px', marginTop: '-17vh'}}></div>
             </section>
-            <p className="comment">This is delicious</p>
+            <p className="comment">It is good recipe</p>
 
             <section className="col-2 offset-md-2 row comment-section" style={{marginTop: '5vh'}}>
                 <mark className="col bg-transparent profile-comment">
                     <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={Elephant} alt="Elephant profile"/>
                 </mark>
                 <mark className="col bg-transparent comment-info">
-                    <p className="col">Karen</p>
+                    <p className="col">Mr. Elephant</p>
                     <p className="fw-bold">10 recipes</p>
                 </mark>
                 <div className="vr bg-warning" style={{padding: '4px', height: '100px', marginTop: '-17vh'}}></div>
             </section>
-            <p className="comment">Amazing recipe</p>
+            <p className="comment">It is good recipe</p>
 
             <hr className="horizontal-line"/>
 

@@ -38,13 +38,13 @@
         margin: auto;
     }
     
-    .pagination, .button-next {
-        display: flex;
-        justify-content: center;
-        margin-top: 10vh;
-        margin-bottom: -10vh;
-        align-items: center;
-        gap: 12px;
+    .pagination .button-previous {
+        width: 10vh;
+    }
+
+    .pagination .button-next {
+        width: 10vh;
+        margin-top: -10vh;
     }
     
     footer, .footer-motto, .footer-sub-motto {
@@ -97,13 +97,13 @@
         margin: auto;
     }
     
-    .pagination, .button-next {
-        display: flex;
-        justify-content: center;
-        margin-top: 10vh;
-        margin-bottom: -10vh;
-        align-items: center;
-        gap: 12px;
+    .pagination .button-previous {
+        width: 10vh;
+    }
+
+    .pagination .button-next {
+        width: 10vh;
+        margin-top: -10vh;
     }
     
     footer, .footer-motto, .footer-sub-motto {
@@ -175,11 +175,12 @@
         margin-left: -0.2vh;
     }
 
-    .pagination, .button-next {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 12px;
+    .pagination .button-previous {
+        width: 10vh;
+    }
+
+    .pagination .button-next {
+        width: 10vh;
     }
 
     footer, .footer-motto, .footer-sub-motto {

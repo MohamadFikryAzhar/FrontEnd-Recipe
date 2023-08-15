@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
 
 :root {
-    --yellow: goldenrod;
+    --yellow: #EFC81A;
 }
 
 * {
@@ -15,10 +15,11 @@
     }
     
     .search-bar {
-        border-radius: 8px;
-        height: 10px;
-        width: 20px;
         margin-left: 19vh;
+    }
+
+    .sorted-list {
+        margin-right: 10vh;
     }
     
     .category {
@@ -76,6 +77,10 @@
     
     .search-bar {
         margin-left: 19vh;
+    }
+
+    .sorted-list {
+        margin-right: 10vh;
     }
     
     .category {
@@ -174,12 +179,6 @@
         margin-left: -0.2vh;
     }
 
-    .category {
-        margin-top: 7vh;
-        margin-bottom: 25vh;
-        margin-left: 15vh;
-    }
-
     .search-bar, input[name="menu"] {
         padding-right: auto;
     }
@@ -247,18 +246,18 @@
         margin-top: 2vh;
         padding: 20px;
         background-color: var(--yellow);
-        color: black;
+        color: rgb(37, 10, 112);
     }
 
     footer, .footer-nav {
         background-color: var(--yellow);
-        color: black;
+        color: rgb(37, 10, 112);
         margin-top: 20vh;
     }
 
     footer .footer-company {
         background-color: var(--yellow);
-        color: black;
+        color: rgb(37, 10, 112);
         margin-left: 150vh;
         margin-top: -5vh;
     }

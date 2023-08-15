@@ -1,5 +1,5 @@
-import Navbar from '../component/Navbar';
-import Footer from '../component/Footer';
+import Navbar from './component/Navbar';
+import Footer from './component/Footer';
 import EggSandwich from '/images/image-13.webp';
 import EggFriedRice from '/images/image-4.webp';
 import AromaticRice from '/images/image-5.webp';
@@ -9,10 +9,10 @@ import BananaSmoothie from '/images/image-9.webp';
 import LavaCoffeCake from '/images/image-10.webp';
 import SalmonSugar from '/images/image-11.webp';
 import IndianaSalad from '/images/image-12.webp';
-import './../assets/css/styles.css';
+import './assets/css/styles.css';
 import axios from 'axios';
 import React from 'react';
-import { URL } from './../config/URL';
+import { URL } from './config/URL';
 
 export default class RootPage extends React.Component {
     constructor() {
@@ -25,7 +25,6 @@ export default class RootPage extends React.Component {
         recipeData: [],
         showModal: false
     }
-
     
     searchRecipe(value) {
         axios.get(`${URL}/recipe?search=${value}`)
@@ -46,7 +45,7 @@ export default class RootPage extends React.Component {
     render() {
         return (
             <>
-                <Navbar firstlink='Home' firstlinkto='#' secondlink='All Recipe' secondlinkto='/recipe' thirdlink='Profile' thirdlinkto='/account' props='guest' />
+                <Navbar />
     
                 <div className="m-lg-5 p-lg-5 m-sm-5 p-sm-5 second-navigation">
                     <h1 className="mt-lg-5 mt-sm-5">
@@ -59,7 +58,6 @@ export default class RootPage extends React.Component {
                         <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target='#exampleModal'>Search</button>
                     </div>
                 </div>
-
                 
                 <div className="modal fade" id="exampleModal" tabIndex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog">
@@ -154,17 +152,17 @@ export default class RootPage extends React.Component {
                     <section className="row recipe-popular-section">
                         <div className="col recipe-popular-text">
                             <p className="position-absolute recipe-text">Chicken <br/> Kare</p>
-                            <img src={ChickenKare} className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="500" alt="Chicken Kare"/>
+                            <img src={ChickenKare} className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="350" alt="Chicken Kare"/>
                         </div>
     
                         <div className="col recipe-popular-text">
                             <p className="position-absolute recipe-text">Bomb <br/> Chicken</p>
-                            <img src={ChickenBomb}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="500" alt="Chicken Kare"/>
+                            <img src={ChickenBomb}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="350" alt="Chicken Kare"/>
                         </div>
     
                         <div className="col recipe-popular-text">
                             <p className="position-absolute recipe-text">Banana Smoothie Pop</p>
-                            <img src={BananaSmoothie}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="500" alt="Chicken Kare"/>
+                            <img src={BananaSmoothie}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="350" alt="Chicken Kare"/>
                         </div>
                     </section>
                 </section>
@@ -172,17 +170,17 @@ export default class RootPage extends React.Component {
                     <section className="row recipe-popular-section">
                         <div className="col recipe-popular-text">
                             <p className="position-absolute recipe-text">Coffee Lava <br/> Cake</p>
-                            <img src={LavaCoffeCake}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="500" alt="Chicken Kare"/>
+                            <img src={LavaCoffeCake}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="350" alt="Chicken Kare"/>
                         </div>
     
                         <div className="col recipe-popular-text">
                             <p className="position-absolute recipe-text">Sugar <br/> Salmon</p>
-                            <img src={SalmonSugar}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="500" alt="Chicken Kare"/>
+                            <img src={SalmonSugar}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="350" alt="Chicken Kare"/>
                         </div>
     
                         <div className="col recipe-popular-text">
                             <p className="position-absolute recipe-text">Indiana <br/> Salad</p>
-                            <img src={IndianaSalad}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="500" alt="Chicken Kare"/>
+                            <img src={IndianaSalad}  className="w-100 h-75" loading="eager" decoding="asyc" width="500" height="350" alt="Chicken Kare"/>
                         </div>
                     </section>
                 </section>

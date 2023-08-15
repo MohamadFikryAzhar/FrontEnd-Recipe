@@ -1,55 +1,40 @@
-import Navbar from './../../component/Navbar';
-import Footer from './../../component/Footer';
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
 import { Link, useNavigate } from 'react-router-dom';
-import Elephant from '/images/Ellipse 127.png';
 import { useEffect, useState } from 'react';
-import axios from 'axios';
-import './../../assets/css/detailprofile.css';
-import { URL } from '../../config/URL';
+import { useDispatch, useSelector } from 'react-redux';
+import { deleteRecipeAction, getUserRecipeAction } from '../../redux/actions/RecipeAction.js';
+import './../assets/css/detailprofile.css';
 
-sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY2NjA4NjAxLTYwNDUtNGQ4ZC1hNmMyLTU3NDg4ZmQ0YjMzZiIsIm5hbWUiOiJBZHphbmEgU2hhbGloYSIsImVtYWlsIjoiZ2hhbmlnaGFuaUBnbWFpbC5jb20iLCJyb2xlX25hbWUiOiJ1c2VyIiwicGhvdG8iOm51bGwsInBob3RvX2lkIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wOC0wOFQyMzozMToxMy4zNjVaIiwidXBkYXRlZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwiaWF0IjoxNjkxNTQ2NjkyLCJleHAiOjE3MjMwODI2OTJ9.zdKox40i-b9CVdVYdKAwxhwt22UUtHB1oaQuZX4k7OQ")
-let token = sessionStorage.getItem("token");
-
-export default function DetailRecipe() {
+export default function DetailProfile() {
     const navigate = useNavigate();
-    const [recipeData, setRecipeData] = useState([]);
-
-    function getRecipeData() {
-        axios.get(`${URL}/recipe/main`)
-            .then(res => setRecipeData(res.data.data))
-            .catch(err => console.error(err.message));
-    }
-
-    function deleteMenu(id) {
-        axios.delete(`${URL}/recipe/${id}`, {headers: {
-            Authorization: `Bearer ${token}`
-        }})
-        .then(() => {
-            navigate('/account');
-        })
-        .catch(err => {
-            console.error(err.message)
-        })
+    const dispatch = useDispatch();
+    const page = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const {user_recipe} = useSelector(state => state);
+    const {data} = user_recipe;
+    
+    function deleteRecipe(id) {
+        dispatch(deleteRecipeAction(id, navigate))
     }
 
     useEffect(() => {
-        getRecipeData();
-    })
+        dispatch(getUserRecipeAction(localStorage.getItem('name'), currentPage))
+    }, [currentPage, localStorage.getItem('name')])
 
     return (
         <>
-            <Navbar firstlink='Home' firstlinkto='/' secondlink='Search menu' secondlinkto='/recipe' thirdlink='Profile' thirdlinkto='#' props='account' />
-
+            <Navbar/>
             <section className="navbar second-nav">
             <div className="container-fluid">
                 <div className="vr bg-warning" style={{padding: '2px'}}></div>
                 <mark className="bg-transparent profile-wrapper">
                     <Link to='#'>
-                        <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={Elephant} alt="Elephant profile"/>
+                        <img width="50" height="50" loading="eager" decoding="async" id="photo-profile" src={localStorage.getItem("photo") ?? ''} alt={localStorage.getItem("name")}/>
                     </Link>
                 </mark>
                 <mark className="col bg-transparent profile-details">
-                    <p className="col">Karen</p>
+                    <p className="col">{localStorage.getItem("name")}</p>
                     <p className="fw-bold">10 recipes</p>
                 </mark>
                 <form className="d-flex" role="search">
@@ -69,8 +54,8 @@ export default function DetailRecipe() {
             <hr style={{width: '142vh', marginLeft: '35vh', height: '3vh', backgroundColor: '#EFC81A'}}/>
             
             <main id="recipe-content">
-                {recipeData.map((item, index) => {
-                    return(
+                {data?.map((item, index) => {
+                    return (
                         <div key={index} className='mt-5'>
                             <section className="d-flex single-popular-recipe justify-content-start container">
                                 <a className="col-md-8 mt-5" href="#">
@@ -85,7 +70,7 @@ export default function DetailRecipe() {
                                 <p className="reaction-row bg-warning">10 likes - 12 comments - 3 bookmarks</p>
                                 <mark className="account">
                                     <Link className="btn btn-primary ms-1" to={`/edit-recipe/${item.id}`}>Edit Menu</Link>
-                                    <a className="btn btn-danger ms-5" onClick={() => deleteMenu(item.id)} role="button">Delete Menu</a>
+                                    <a className="btn btn-danger ms-5" onClick={() => deleteRecipe(item.id)} role="button">Delete Menu</a>
                                 </mark>
                             </section>
                         </div>
@@ -94,9 +79,19 @@ export default function DetailRecipe() {
                 }
             </main>
 
-            <section className="pagination">
-                <a className="btn btn-warning button-previous" style={{color: 'white', fontSize: '12px'}} href="#" role="link">Prev</a>
-                Show 6-10 From 20
+            <section className="pagination mt-5 ms-5">
+                <button
+                    className="btn btn-sm btn-warning button-previous"
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    hidden={currentPage <= 1}>
+                    Prev
+                </button>
+                <button
+                    className="btn btn-sm btn-warning button-next"
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    hidden={currentPage >= page?.totalPage}>
+                    Next
+                </button>
             </section>
 
             <Footer/>

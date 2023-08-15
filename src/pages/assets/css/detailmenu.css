@@ -241,7 +241,10 @@
     }
 
     .reaction {
-        margin-left: 50vh;
+        display: flex;
+        flex-direction: row;
+        margin-left: 40vh;
+        width: 20vh;
     }
 
     .reaction .bookmarkBtn {

@@ -1,18 +1,19 @@
 import { useNavigate, useParams } from 'react-router';
-import Navbar from './../../component/Navbar'
-import Footer from './../../component/Footer'
-import './../../assets/css/editmenu.css'
-import axios from 'axios';
+import Navbar from './../component/Navbar'
+import Footer from './../component/Footer'
+import './../assets/css/editmenu.css'
 import { useEffect, useRef, useState } from 'react';
-import { URL } from '../../config/URL';
-
-sessionStorage.setItem("token", "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImY2NjA4NjAxLTYwNDUtNGQ4ZC1hNmMyLTU3NDg4ZmQ0YjMzZiIsIm5hbWUiOiJBZHphbmEgU2hhbGloYSIsImVtYWlsIjoiZ2hhbmlnaGFuaUBnbWFpbC5jb20iLCJyb2xlX25hbWUiOiJ1c2VyIiwicGhvdG8iOm51bGwsInBob3RvX2lkIjpudWxsLCJjcmVhdGVkX2F0IjoiMjAyMy0wOC0wOFQyMzozMToxMy4zNjVaIiwidXBkYXRlZF9hdCI6bnVsbCwiZGVsZXRlZF9hdCI6bnVsbCwiaWF0IjoxNjkxNTQ2NjkyLCJleHAiOjE3MjMwODI2OTJ9.zdKox40i-b9CVdVYdKAwxhwt22UUtHB1oaQuZX4k7OQ")
-let token = sessionStorage.getItem("token");
+import { useDispatch, useSelector } from 'react-redux';
+import {getRecipeAction, updateRecipeAction} from './../../redux/actions/RecipeAction.js';
+import { PacmanLoader } from 'react-spinners';
 
 export default function EditRecipe() {
     const {id} = useParams();
     const ref = useRef(null);
+    const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {data} = useSelector(state => state.recipe);
+    const {isLoading} = useSelector(state => state.put_recipe);
     const [image_path, setImage] = useState(null);
     const [recipeData, setRecipeData] = useState({
         title: "",
@@ -20,48 +21,30 @@ export default function EditRecipe() {
         category: "",
         image_path: ""
     })
-
-    const getRecipeData = () =>{
-        axios.get(`${URL}/recipe/${id}/detail`,{headers :{
-            Authorization : `Bearer ${token}`
-        }})
-        .then(res => {
-            setRecipeData({
-                ...recipeData,
-                title: res.data.data[0].title,
-                ingredients: res.data.data[0].ingredients,
-                image_path:res.data.data[0].image_path,
-                category: res.data.data[0].category
-            })
-        })
-        .catch(err => {
-            console.error(err.message)
-        })
-    }
+    
+    useEffect(() => {
+        dispatch(getRecipeAction(id))
+    }, [])
 
     useEffect(() => {
-        getRecipeData();
-    })
+        data && setRecipeData({...recipeData,
+            title: data.title,
+            image_path:data.image_path,
+            ingredients:data.ingredients,
+            category:data.category
+        })
+    }, [data])
 
     const putRecipeData = event => {
         event.preventDefault();
 
-        let bodyForm = new FormData();
-        bodyForm.append("title", recipeData.title);
-        bodyForm.append("ingredients", recipeData.ingredients);
-        bodyForm.append("category", recipeData.category);
-        bodyForm.append("image_path", image_path);
+        let bodyRecipe = new FormData();
+        bodyRecipe.append("title", recipeData.title);
+        bodyRecipe.append("ingredients", recipeData.ingredients);
+        bodyRecipe.append("category", recipeData.category);
+        bodyRecipe.append("image_path", image_path);
 
-        axios.put(`${URL}/recipe/${id}`, bodyForm, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "multipart/form-data"
-            }
-        }).then(() => {
-            navigate('/account')
-        }).catch(e => {
-            console.error(e.message);
-        })
+        dispatch(updateRecipeAction(bodyRecipe, id, navigate))
     }
 
     const onRecipe = e => {
@@ -77,7 +60,9 @@ export default function EditRecipe() {
 
     return (
         <>
-            <Navbar firstlink="Home" firstlinkto="/" secondlink="Profile" secondlinkto="/account" thirdlink="Recipe" thirdlinkto="/recipe" props="account" />
+            <Navbar/>
+
+            {isLoading && <PacmanLoader color="#36d7b7" />}
 
             <form onSubmit={putRecipeData} className="container">
                 <div className="photo-file" style={{

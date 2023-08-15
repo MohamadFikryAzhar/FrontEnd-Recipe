@@ -11,7 +11,7 @@ export default function Footer() {
                 <a className="btn" href="#">Learn More</a>
                 <a className="btn" href="#">Get in Touch</a>
             </nav>
-            <h5 className="footer-company">Arkademy</h5>
+            <h5 className="footer-company">&copy; Arkademy</h5>
         </footer>
     )
 }

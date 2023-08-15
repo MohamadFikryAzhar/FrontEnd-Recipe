@@ -1,94 +1,95 @@
-import axios from 'axios';
-import { Link } from 'react-router-dom';
-import React from 'react';
-import './../../assets/css/menurecipe.css';
-import Navbar from '../../component/Navbar';
-import Footer from '../../component/Footer';
-import {URL} from './../../config/URL';
+import { useEffect, useState } from 'react';
+import './../assets/css/menurecipe.css';
+import Navbar from './../component/Navbar';
+import Footer from './../component/Footer';
+import { useDispatch, useSelector } from 'react-redux';
+import { categorizedRecipeAction, getAllRecipeAction, searchRecipeAction, sortingRecipeAction } from '../../redux/actions/RecipeAction.js';
+import MappedRecipeData from '../component/AllRecipeComp';
 
-export default class RecipePage extends React.Component {
-    state = {
-        recipeData: [],
-        query: []
-    }
+export default function RecipePage() {
+    const dispatch = useDispatch();
+    const {recipes} = useSelector(state => state);
+    const {data} = recipes;
+    const page = useState(1);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [search, setSearch] = useState([]);
+    const [sortBy, setSortBy] = useState([]);
+    const [sort, setSort] = useState([]);
+    const [category, setCategory] = useState([]);
 
-    pagination = {
-        page: '' | 1,
-        limit: 10
-    }
+    useEffect(() => {
+        dispatch(sortingRecipeAction(sortBy, sort))
+    }, [sortBy, sort])
 
-    getAllRecipe = () => {
-        axios.get(`${URL}/recipe/main?page=${this.pagination.page}&limit=${this.pagination.limit}`)
-            .then(res => this.setState({recipeData: res.data.data}))
-            .catch(err => console.error(err.message));
-    }
+    useEffect(() => {
+        dispatch(getAllRecipeAction(currentPage));
+    }, [currentPage])
 
-    searchRecipe(value) {
-        axios.get(`${URL}/recipe?search=${value}`)
-            .then(res => {
-                this.setState({recipeData: res.data.data})
-            })
-            .catch(err => console.error(err.message));
-    }
+    useEffect(() => {
+        dispatch(categorizedRecipeAction(category))
+    }, [category])
 
-    componentDidMount() {
-        this.getAllRecipe();
-    }
+    useEffect(() => {   
+        search.length >= 3 && dispatch(searchRecipeAction(search))
+        search == '' && dispatch(getAllRecipeAction())
+    }, [search])
 
-    render() {
-        return (
+    return (
         <>
-            <Navbar firstlink="Home" firstlinkto="/" secondlink="Add Recipe" secondlinkto="/add-recipe" thirdlink="Profile" thirdlinkto="/account" props="account" />
-    
+            <Navbar />
+
             <header className="title-top container">
                 <h1 className="">Discover Recipe</h1>
                 <h1>& Delicious Food</h1>
             </header>
             <div className="m-lg-5 p-lg-5 m-sm-5 p-sm-5 second-navigation">
-                <div className="input-group mb-3 w-50 mb-sm-3 mb-md-3 mb-lg-3">
+                <div className="input-group mb-1 w-50 mb-sm-3 mb-md-3 mb-lg-3">
                     <i className="bi bi-search input-group-text"></i>
-                    <input  onChange={e => this.searchRecipe(e.target.value)} type="search" className="form-control" placeholder="Search Delicious Food" aria-label="Username" aria-describedby="basic-addon1"/>
+                    <input value={search} onChange={e => setSearch(e.target.value)} name="search" type="text" className="form-control" placeholder="Search Delicious Food" aria-label="Username" aria-describedby="basic-addon1"/>
+                </div>
+                <div className='d-flex mt-2 sorted-list'>
+                    <select className="form-select" aria-label="Default select example" style={{width: '30vh'}}>
+                        <option selected onClick={e => setSortBy(e.target.value)} value="">Sort By</option>
+                        <option onClick={e => setSortBy(e.target.value)} value="title">Title</option>
+                        <option onClick={e => setSortBy(e.target.value)} value="ingredients">Ingredients</option>
+                        <option onClick={e => setSortBy(e.target.value)} value="user_name">User</option>
+                        <option onClick={e => setSortBy(e.target.value)} value="created_at">Created At</option>
+                    </select>
+                    <select className="form-select" aria-label="Default select example" style={{width: '30vh'}}>
+                        <option selected onClick={e => setSort(e.target.value)} value="">Sort</option>
+                        <option onClick={e => setSort(e.target.value)} value="asc">A-Z</option>
+                        <option onClick={e => setSort(e.target.value)} value="desc">Z-A</option>
+                        <option onClick={e => setSort(e.target.value)} value="asc">Old - Latest</option>
+                        <option onClick={e => setSort(e.target.value)} value="desc">Latest - Old</option>
+                    </select>
                 </div>
             </div>
-    
+
             <section className="container category gap-2">
-                <a role="link" className="btn btn-warning" href="">New</a>
-                <a role="link" className="btn btn-warning ms-2" href="">Popular</a>
-                <a role="link" className="btn btn-success ms-2" href="">Vegetarian</a>
-                <a role="link" className="btn btn-success ms-2" href="">Breakfast</a>
+                <button onClick={() => dispatch(getAllRecipeAction())} value="" style={{width: '20vh'}} className="btn btn-warning">All</button>
+                <button onClick={e => setCategory(e.target.value)} value="Main course" style={{width: '20vh'}} className="btn btn-warning ms-2">Main Course</button>
+                <button onClick={e => setCategory(e.target.value)} value="Appetizer" style={{width: '20vh'}} className="btn btn-warning ms-2">Appetizer</button>
+                <button onClick={e => setCategory(e.target.value)} value="Dessert" style={{width: '20vh'}} className="btn btn-success ms-2">Dessert</button>
             </section>
             
-            {
-                this.state.recipeData.filter(recipe => recipe.title.includes(this.state.query)).map((item, index) => {
-                return (
-                    <div key={index}>
-                        <section className="d-flex single-popular-recipe justify-content-start container">
-                            <Link to={`/recipe/${item.id}`} className="col-md-8 mt-5">
-                                <img src={item.image_path} className="img-fluid img-thumbnail rounded float-start" loading="eager" decoding="async" width="500" height="350" alt={item.title}/>
-                            </Link>
-                        </section>
-                        <section className="d-flex ingredient-popular-recipe justify-content-end flex-column offset-md-8">
-                            <h3>{item.title}</h3>
-                            <p className="ingredient text-break">
-                                {item.ingredients}
-                            </p>
-                            <p className="reaction-row bg-warning">10 likes - 12 comments - 3 bookmarks</p>
-                            <mark className="account">
-                                <img className="rounded-circle" src={item.image_path} loading="eager" decoding="async" width="30" height="30" alt={item.user_name}/>
-                                {item.user_name}
-                            </mark>
-                        </section>
-                    </div>
-                )})
-            }
+            <MappedRecipeData data={data}/>
 
-            <section className="pagination">
-                Show 1-5 From 20
-                <a className="btn btn-warning button-next" style={{color: 'white', fontSize: '12px'}} role="button">Next</a>
+            <section className="pagination mt-5 ms-5">
+                <button
+                    className="btn btn-sm btn-warning button-previous"
+                    onClick={() => setCurrentPage(currentPage - 1)}
+                    hidden={currentPage <= 1}>
+                    Prev
+                </button>
+                <button
+                    className="btn btn-sm btn-warning button-next"
+                    onClick={() => setCurrentPage(currentPage + 1)}
+                    hidden={currentPage >= page?.totalPage}>
+                    Next
+                </button>
             </section>
 
             <Footer/>
         </>
-        )
-    }
+    )
 }

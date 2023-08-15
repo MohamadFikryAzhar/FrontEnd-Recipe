@@ -5,6 +5,8 @@ import DetailProfile from './pages/profile/DetailProfile';
 import EditRecipe from './pages/recipe/EditRecipe';
 import RecipePage from './pages/recipe/RecipePage';
 import RootPage from './pages/RootPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import LoginPage from './pages/auth/LoginPage';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route path='/edit-recipe/:id' element={<EditRecipe/>} />
 
         <Route path='/account' element={<DetailProfile/>}/>
+        <Route path='/auth/register' element={<RegisterPage/>}/>
+        <Route path='/auth/login' element={<LoginPage/>}/>
       </Routes>
     </BrowserRouter>
   )
